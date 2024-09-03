@@ -59,9 +59,9 @@ export default function BrandSection({ brandName }: BrandSectionProps) {
         onChange={handleCheckboxChange}
         className="cursor-pointer"
       />
-      {/* <label htmlFor={brandName} className="ml-2 cursor-pointer">
+      <label htmlFor={brandName} className="ml-2 cursor-pointer">
         {brandName}
-      </label> */}
+      </label>
     </div>
   );
 }
