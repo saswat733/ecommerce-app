@@ -17,20 +17,21 @@ const ShowFiltersComponents = ( product:any, query:any ) => {
   const maxPrice = Math.max(...prices);
 
   return (
-    <div>
-      <h1>Filters</h1>
-      <div>
+    <div className='border-2 m-5 w-96 border-black rounded-lg'>
+      <h1 className='text-center text-2xl font-bold uppercase'>Filters</h1>
+      <div className='border border-black px-10 '>
         <PriceSection maxPrice={maxPrice} />
       </div>
-      <div>
+      <div className='border-2 border-black px-10 '>
+        <h1 className='uppercase '>brands</h1>
         {brands.length > 0 && brands.map((brand:any) => (
           <BrandSection key={brand} brandName={brand} />
         ))}
       </div>
-      <div>
+      <div className='border-2 border-black px-10'>
         <DiscountSection />
       </div>
-      <div>
+      <div className='border-2 border-black px-10'>
         <RatingSection />
       </div>
     </div>

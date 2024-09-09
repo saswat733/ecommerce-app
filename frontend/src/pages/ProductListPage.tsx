@@ -9,6 +9,7 @@ import SortOptionsContainer from "../components/SortOptionsContainer";
 import { CiFilter } from "react-icons/ci";
 import ShowFiltersComponents from "../components/ShowFiltersComponents";
 import { useGetProductByQuery } from "../utils/hooks/useGetProductByQuery";
+import { FaFilter } from "react-icons/fa6";
 
 // Define the Product interface
 interface Product {
@@ -89,13 +90,13 @@ export default function ProductListPage() {
         )}
       </div>
 
-      <div className="">
+      <div className="px-3 py-1 border flex justify-end">
         {/* Display filter button */}
         <button
           onClick={() => setShowFilters(!showFilters)}
           className="bg-gray-800 text-white px-4 py-2 rounded-md"
         >
-          {showFilters ? (<div>Hide filters</div>) :  (<div>Show filters</div>)}
+          {showFilters ? (<div><FaFilter /></div>) :  (<div><FaFilter /></div>)}
         </button>
       </div>
       {

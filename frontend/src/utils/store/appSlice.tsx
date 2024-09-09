@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SearchCache {
-  [key: string]: string;
+  [key: string]: string[];
 }
 
 interface GeminiFilteredSearch {

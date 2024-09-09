@@ -42,7 +42,7 @@ export default function PriceSection({ maxPrice }: PriceSectionProps) {
 
   return (
     <div className="border-b p-3">
-      <h1 className="font-semibold mb-1">PRICE</h1>
+      <h1 className="font-semibold mb-1">PRICE RANGE</h1>
 
       <p className="font-semibold">
         ₹{currPrice.toLocaleString("en-IN")}

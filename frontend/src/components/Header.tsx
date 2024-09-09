@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SubHeaderComponent from "./SubHeader";
 import { useSelector } from "react-redux";
 import CategorySideBar from "./CategorySideBar";
+import SearchComponent from "./SearchCompnent";
 
 export default function HeaderComponent() {
   
@@ -45,10 +46,7 @@ export default function HeaderComponent() {
           </div>
         </div>
       </div>
-      <div className="flex items-center border p-4 m-2 rounded-full gap-2 h-10">
-        <IoMdSearch className="text-4xl text-gray-800"/>
-        <input className="p-2 text-lg  h-9 w-full" type="text" placeholder="What are you looking for?" />
-      </div>
+      <SearchComponent/>
 
       <SubHeaderComponent/>
 
