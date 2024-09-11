@@ -26,22 +26,22 @@ export default function HeaderComponent() {
     <>
       <div className="bg-zinc-950 text-gray-400">
         <div className="">
-          <h1 className=" text-center text-3xl font-bold">SHOPPERS STOP</h1>
+          <h1 className=" text-center md:text-3xl font-bold">SHOPPERS STOP</h1>
         </div>
-        <div className="flex text-lg justify-between my-2 p-2">
+        <div className="flex md:text-lg justify-between md:my-2 p-2">
           <h1>Hello, {GreetingMessage}</h1>
           <div className="gap-4 flex items-center ">
             <Link to={'/cart'}>
             <div className="relative">
-              <FaCartShopping className="text-3xl" />
-              <div className="bg-red-700 p-2 rounded-full h-6 w-6 absolute left-4 bottom-5 ">
+              <FaCartShopping className="text-2xl md:text-3xl" />
+              <div className="bg-red-700 p-2 rounded-full h-6 w-6 absolute left-2 bottom-4 md:left-4 md:bottom-5 ">
                 <span className="absolute bottom-[1px] ">{cartItems.length}</span>
               </div>
             </div>
             </Link>
 
             <Link to={'/login'}>
-                <button className="border py-1 px-2 rounded-md ">Login</button>
+                <button className="border py-1 px-1 md:px-2 rounded-md ">Login</button>
             </Link>
           </div>
         </div>

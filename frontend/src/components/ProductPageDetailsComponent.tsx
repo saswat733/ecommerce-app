@@ -10,7 +10,7 @@ export default function ProductPageDetailsComponent({ productDetail }: any) {
     }
   return (
     <>
-      <div className="border p-10">
+      <div className=" md:border md:p-10">
         <div className="">
           <div className="">
             {productDetail.rating < 3 && (

@@ -15,7 +15,7 @@ export default function ProductDetailsComponent() {
     console.log(productInfo)
     return( 
     <>
-   <div className="md:flex mt-10 mx-20">
+   <div className="mx-5 md:flex mt-10 md:mx-20">
    <ProductImagesCarousel images={productInfo.images}/>
    <ProductPageDetailsComponent productDetail={productInfo}/>
    </div>

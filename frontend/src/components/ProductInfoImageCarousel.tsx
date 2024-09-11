@@ -20,7 +20,7 @@ const ProductImagesCarousel = ({ images }: ProductImagesCarouselProps) => {
   return (
     <div>
       <div className="flex flex-col md:flex-row bg-white p-2 lg:p-4">
-        <div className="mr-2 w-16 md:w-24 flex items-center h-16 md:block my-2 md:my-0">
+        <div className="mr-2  w-full cursor-pointer md:w-24 flex items-center h-16 md:block my-2 md:my-0">
           {images.map((url: string, i: number) => (
             <img
               src={url}

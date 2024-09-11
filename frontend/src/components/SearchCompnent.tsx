@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { addGeminiFilteredSearch, addSearchCache } from "../utils/store/appSlice";
+import {
+  addGeminiFilteredSearch,
+  addSearchCache,
+} from "../utils/store/appSlice";
 import model from "../utils/gemini";
 import { categoryList } from "../utils/categoryList";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +17,7 @@ interface SearchSuggestion {
 }
 
 interface SearchCache {
-    [key: string]: string[];
+  [key: string]: string[];
 }
 interface GeminiResponse {
   category: string;
@@ -26,7 +29,7 @@ interface GeminiResponse {
 const SearchBar: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   // Define state types
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<string[]>([]);
@@ -73,7 +76,7 @@ const SearchBar: React.FC = () => {
   };
 
   // GEMINI search functionality
-  const getGeminiSearch = (serchText:any) => {
+  const getGeminiSearch = (serchText: any) => {
     if (serchText !== "") {
       // To hide and delete the search Suggrestion
       setShowSuggestion(false);
@@ -116,14 +119,14 @@ const SearchBar: React.FC = () => {
       run();
     }
   };
-  
+
   return (
     <>
       <div
-        className={`progress-bar bg-sky-600 pt-0.5 absolute top-0 left-0 w-[${progressValue}%] transition-all`}
+        className={`progress-bar bg-black pt-0.5 absolute top-0 left-0 w-[${progressValue}%] transition-all`}
       ></div>
 
-      <div className="flex items-center relative w-full mt-5 mx-auto md:mt-0 sm:w-10/12 md:w-5/12">
+      <div className="flex items-center relative w-full my-2 md:mt-5 mx-auto sm:w-10/12 md:w-5/12">
         <input
           type="text"
           placeholder="Search for products"
@@ -135,7 +138,7 @@ const SearchBar: React.FC = () => {
           }}
         />
         <button
-          className="py-2 px-3 bg-sky-800 text-2xl rounded-r-full text-white"
+          className="py-2 px-3 bg-black text-2xl rounded-r-full text-white"
           onClick={() => getGeminiSearch(searchQuery)}
         >
           <IoSearch />
