@@ -4,17 +4,23 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 // Zod schema for validation
-const UserCheck = z.object({
+const UserSignUpCheck = z.object({
     firstname: z.string().min(1).trim().toLowerCase(),
     lastname: z.string().min(1).trim().toLowerCase(),
     email: z.string().email().toLowerCase(),
     password: z.string().min(6) // Minimum password length
 });
 
+const UserLoginCheck = z.object({
+    email: z.string().email().toLowerCase(),
+    password: z.string().min(6)
+});
+
+
 // Register user function
 export const registerUser = async (req, res) => {
     // Validate request data
-    const { success, error, data } = UserCheck.safeParse(req.body);
+    const { success, error, data } = UserSignUpCheck.safeParse(req.body);
     if (!success) {
         return res.status(400).json({
             message: 'Invalid input data',
@@ -63,3 +69,40 @@ export const registerUser = async (req, res) => {
         });
     }
 };
+
+
+export const loginUser = async (req, res) => {
+        const {success, error, data} = UserLoginCheck.safeParse(req.body);
+        if (!success) {
+            return res.status(400).json({
+                message: 'Invalid input data',
+                errors: error.issues, // Provide validation errors
+            });
+        }
+    
+        try {
+            const existingUser=await User.findOne({email:data.email});
+            if(!existingUser){
+                return res.status(404).json({message:'User not found'});
+            }
+            const isValidPassword=await bcrypt.compare(data.password,existingUser.password);
+            if(!isValidPassword){
+                return res.status(401).json({message:'Invalid password'});
+            }
+            const userId=existingUser._id;
+            const token=jwt.sign({userId},process.env.JWT_SECRET,{
+                expiresIn:'1h',
+            });
+            return res.status(200).json({
+                message:'User logged in successfully',
+                token:token,
+            });
+
+        } catch (error) {
+            // Handle any errors that occurred during the process
+            console.error('Error logging in user:', error);
+            return res.status(500).json({
+                message: 'An error occurred during login',
+            });
+        }
+}
