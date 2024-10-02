@@ -3,7 +3,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import userRouter from './routes/user.routes.js';
-
+import productRouter from './routes/product.routes.js';
 const app = express();
 
 // CORS Configuration
@@ -18,6 +18,6 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/v1/users', userRouter);
-
+app.use('/api/products', productRouter);
 
 export { app };

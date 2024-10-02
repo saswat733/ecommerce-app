@@ -61,6 +61,7 @@ export default function SimilarProductsSuggestions({ category }: SimilarProducts
               key={product.id}
               product={product}
               category={category}
+              flag={true}
             />
           ))}
         </Slider>

@@ -14,10 +14,11 @@ interface ProductCardProps {
       brand: string;
     };
     category: string;
+    flag:boolean
   }
 
 
-export default function ProductCard({ product, category }: ProductCardProps) {
+export default function ProductCard({ product, category,flag }: ProductCardProps) {
     const dispatch = useDispatch()
 
     const { id, price, title, images, discountPercentage } = product;
@@ -62,14 +63,28 @@ export default function ProductCard({ product, category }: ProductCardProps) {
                   {product.brand}
                 </p>
               )}
+              {flag==true && (
+                <p className="bg-green-400 gap-2 opacity-80 uppercase w-full absolute top-20  flex items-center justify-center text-center">
+                  <span className="">discount</span>
+                  {product.discountPercentage}%
+                </p>
+              )}
+              
             </div>
           </div>
         </div>
       </Link>
-      <div className="w-full  flex justify-center">
+      <div className="w-full  flex flex-col justify-center">
         <button onClick={handleAddToCart} className="border w-full my-1 p-1 uppercase  bg-zinc-800 text-gray-500 rounded-lg ">
           Add To Bag
         </button>
+        {
+          flag==true && (
+            <button className="border-gray-600 border-2 w-full my-1 p-1 uppercase  text-gray-500 rounded-lg ">
+              Buy Now
+            </button>
+          )
+        }
       </div>
     </div>
   );

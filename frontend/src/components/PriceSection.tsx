@@ -41,7 +41,7 @@ export default function PriceSection({ maxPrice }: PriceSectionProps) {
   };
 
   return (
-    <div className="border-b p-3">
+    <div className=" p-3 w-full border-b-8">
       <h1 className="font-semibold mb-1">PRICE RANGE</h1>
 
       <p className="font-semibold">
