@@ -6,13 +6,14 @@ import ProductPage from './pages/ProductPage';
 import ProductListPage from './pages/ProductListPage';
 import SignUpPage from './pages/SignUpPage';
 import { lazy, Suspense } from 'react';
+import EmailOtpPage from './pages/Email-otp';
 
 const Cart = lazy(() => import('./pages/CartPage'));
 const Login = lazy(() => import('./pages/LoginPage'));
 
 function Layout() {
   const location = useLocation();
-  const headerAvoidPage = location.pathname === '/login' || location.pathname === '/signup';
+  const headerAvoidPage = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/email-verification';
 
   return (
     <>
@@ -28,6 +29,8 @@ function Layout() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="/email-verification" element={<EmailOtpPage/>} />
+        
         </Routes>
       </Suspense>
     </>

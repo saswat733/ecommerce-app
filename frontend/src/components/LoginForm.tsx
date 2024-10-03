@@ -114,6 +114,9 @@ export default function LoginForm() {
                   required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-lg text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
+             <Link className="underline text-red-400" to={'/email-verification'}>
+              <span className="text-red-400 text-[12px] text-nowrap flex justify-end">forgot password?</span>
+             </Link> 
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
