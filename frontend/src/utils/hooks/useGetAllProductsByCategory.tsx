@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import { PRODUCTS_BY_CATEGORY_API } from '../../api';
+import { API_ENDPOINTS, PRODUCTS_BY_CATEGORY_API } from '../../api';
 import { addCategoryProducts } from '../store/AllProductsSlice';
 
 export const useGetProductsByCategory = (category: string) => {

@@ -4,6 +4,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import userRouter from './routes/user.routes.js';
 import productRouter from './routes/product.routes.js';
+import authRouter from './routes/auth.routes.js';
+
 const app = express();
 
 // CORS Configuration
@@ -19,5 +21,6 @@ app.use(express.json());
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/products', productRouter);
+app.use('/api/auth', authRouter);
 
 export { app };

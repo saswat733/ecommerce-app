@@ -2,12 +2,18 @@ import Product from "../models/allProducts.model.js";
 import { fetchAndStoreProducts } from "../services/productService.js";
 
 export const allProducts=async(req,res)=>{
+ 
+    
     try {
-        await fetchAndStoreProducts();
-        res.status(200).json({message:'Products saved to the database'});
+        const products=await Product.find({});
+        if(!products || products.length===0){
+            return res.status(404).json({message:'No products found'});
+        }
+        res.status(200).json({products});
     } catch (error) {
-        res.status(500).json({message:'Error fetching or saving products'});
-    }
+        res.status(500).json({message:'Error fetching products',error});
+    } 
+  
 }
 
 
@@ -46,7 +52,7 @@ export const searchProducts=async (req,res)=>{
     try {
         const {query}=req.params;
         console.log(query)
-        
+
         if(typeof query!=='string' || query.trim===''){
             return res.status(400).json({message:'Invalid query'});
         }
@@ -68,3 +74,4 @@ export const searchProducts=async (req,res)=>{
         res.status(500).json({message:'Error fetching products',error:error.message});
     }
 }
+

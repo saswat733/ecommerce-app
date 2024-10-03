@@ -32,7 +32,7 @@ const ProductImagesCarousel = ({ images }: ProductImagesCarouselProps) => {
     <div>
       <div className="flex flex-col md:flex-row bg-white p-2 lg:p-4">
         {/* Thumbnail Images */}
-        <div className="mr-2 w-full cursor-pointer md:w-24 flex items-center h-16 md:block my-2 md:my-0">
+        <div className="mr-2 w-16 cursor-pointer md:w-24 flex items-center h-16 md:block my-2 md:my-0">
           {images.map((url: string, i: number) => (
             <img
               src={url}
@@ -59,7 +59,6 @@ const ProductImagesCarousel = ({ images }: ProductImagesCarouselProps) => {
                 zoomSrc={images[currImg]}
                 zoomType="hover"
                 zoomPreload={true}
-                alt={`selected-product-image-${currImg}`}
                 className="h-full w-full p-1 object-cover"
               />
             </div>

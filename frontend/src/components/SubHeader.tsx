@@ -17,11 +17,11 @@ export default function SubHeaderComponent(){
             <TiThMenuOutline className="text-xl text-zinc-800 cursor-pointer"/>
             </div>
             <ul className="flex ">
-                <li data-value="smartphones" onClick={()=>handleOnclick(subLinks[0])} className="cursor-pointer mr-2 border md:mr-4">Mobiles</li>
-                <li data-value="sports-accessories" onClick={()=>handleOnclick(subLinks[1])} className="cursor-pointer mr-2 border md:mr-4">Sports</li>
-                <li data-value="sunglasses" onClick={()=>handleOnclick(subLinks[2])} className="cursor-pointer mr-2 border md:mr-4">Sunglases</li>
-                <li data-value="mens-watches" onClick={()=>handleOnclick(subLinks[3])} className="cursor-pointer mr-2 border md:mr-4">Watches</li>
-                <li data-value="clothes" onClick={()=>handleOnclick(subLinks[4])} className="cursor-pointer mr-2 border md:mr-4">Clothes</li>
+                <li data-value="smartphones" onClick={()=>handleOnclick(subLinks[0])} className="cursor-pointer text-sm md:text-lg mr-1 border md:mr-4">Mobiles</li>
+                <li data-value="sports-accessories" onClick={()=>handleOnclick(subLinks[1])} className="cursor-pointer text-sm md:text-lg mr-1 border md:mr-4">Sports</li>
+                <li data-value="sunglasses" onClick={()=>handleOnclick(subLinks[2])} className="cursor-pointer text-sm md:text-lg mr-1 border md:mr-4">Sunglases</li>
+                <li data-value="mens-watches" onClick={()=>handleOnclick(subLinks[3])} className="cursor-pointer text-sm md:text-lg mr-1 border md:mr-4">Watches</li>
+                <li data-value="clothes" onClick={()=>handleOnclick(subLinks[4])} className="cursor-pointer text-sm md:text-lg mr-1 border md:mr-4">Clothes</li>
             </ul>
         </div>
         </>

@@ -126,11 +126,11 @@ const SearchBar: React.FC = () => {
         className={`progress-bar bg-black pt-0.5 absolute top-0 left-0 w-[${progressValue}%] transition-all`}
       ></div>
 
-      <div className="flex items-center relative w-full my-2 md:mt-5 mx-auto sm:w-10/12 md:w-5/12">
+      <div className="flex items-center relative w-11/12 mx-auto  my-2 md:mt-5  sm:w-10/12 md:w-5/12">
         <input
           type="text"
           placeholder="Search for products"
-          className="py-2 px-4 rounded-l-full outline-none w-full"
+          className="text-sm border py-2 px-4 rounded-l-full outline-none w-full"
           readOnly={isSideBar}
           value={searchQuery}
           onChange={(e) => {

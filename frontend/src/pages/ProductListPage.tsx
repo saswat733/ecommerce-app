@@ -106,11 +106,11 @@ export default function ProductListPage() {
           </>
         )
       }
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap items-center justify-center">
         {/* Render the filtered product list */}
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product: Product) => (
-            <ProductCard key={product.id} product={product} category={category || ""} />
+            <ProductCard key={product.id} product={product} flag={false} category={category || ""} />
           ))
         ) : (
           <p>No products available.</p>

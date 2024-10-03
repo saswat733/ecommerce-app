@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ALL_PRODUCTS_API } from "../../api";
+import { API_ENDPOINTS } from "../../api";
 import { addDealProducts } from "../store/AllProductsSlice";
 
 export const useGetAllProducts = () => {
@@ -11,7 +11,7 @@ export const useGetAllProducts = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axios.get(ALL_PRODUCTS_API);
+        const res = await axios.get(`${API_ENDPOINTS.ALL_PRODUCTS}/allProducts`);
         dispatch(addDealProducts(res.data.products));
         console.log(res)
       } catch (error) {

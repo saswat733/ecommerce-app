@@ -1,5 +1,14 @@
 export const ALL_PRODUCTS_API = "https://dummyjson.com/products";
 
+
+const API_BASE_URL="http://localhost:3000/api";
+
+export const API_ENDPOINTS={
+  ALL_PRODUCTS: `${API_BASE_URL}/products`,
+  PRODUCTS_BY_CATEGORY:`${API_BASE_URL}/products/category/`,
+
+}
+
 export const PRODUCTS_BY_CATEGORY_API =
   "https://dummyjson.com/products/category/";
 
