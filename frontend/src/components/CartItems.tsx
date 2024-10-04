@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux"; 
 import { getCalculatedAmount } from "../utils/helper";
 import { addDiscounts, addSubTotalsWithoutDiscount, removeCartItem } from "../utils/store/CartSlice";
+import { Link } from "react-router-dom";
 
 // Define the type for the item prop (you can adjust it based on your data structure)
 interface ItemDetail {
@@ -61,7 +62,8 @@ export default function CartItem({ itemDetail }: CartItemProps) {
 
   return (
     <div className="border p-2 m-2 w-full flex">
-      <div className="w-2/5">
+     <Link className="w-2/5" to={`/product/${item.id}`}>
+      <div className="w-full">
         <img
           src={item.images[0]}
           alt={item.title}
@@ -84,7 +86,7 @@ export default function CartItem({ itemDetail }: CartItemProps) {
           </button>
         </div>
       </div>
-
+      </Link>
       <div className="flex w-full justify-start flex-col">
         <div className="flex justify-between">
           <h1 className="font-bold">{item.title}</h1>

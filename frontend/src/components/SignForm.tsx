@@ -1,55 +1,41 @@
-import axios from "axios";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
-console.log('API_BASE_URL:', import.meta.env.VITE_API_BASE_URL);
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthUser } from "../utils/hooks/useAuthUser";
 
 export default function SignForm() {
-  const [userDetails, setUserDetails] = useState({
+  const { registerUser, loading, error,isAuthenticated } = useAuthUser();
+
+  // State to manage form inputs
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
-    setUserDetails({
-      ...userDetails,
-      [name]: type === "checkbox" ? checked : value,
+  const navigate=useNavigate()
+  // Handle input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-   
-    try {
-      const response = await axios.post(`${API_BASE_URL}/users/register`, {
-        firstname: userDetails.firstName,
-        lastname: userDetails.lastName,
-        email: userDetails.email,
-        password: userDetails.password,
-      });
-
-      console.log("Response:", response);
-      if (response.status === 201) {
-        setSuccessMessage("Registration successful!");
-        setErrorMessage("");
-        setUserDetails({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-        });
-      }
-    } catch (error) {
-      setErrorMessage("An error occurred during registration.");
-    }
+    const { firstName, lastName, email, password } = formData;
+    // Call registerUser from the custom hook
+    await registerUser(firstName, lastName, email, password);
   };
+
+  useEffect(() => {
+    if(isAuthenticated){
+      return navigate('/');
+    }
+  }, [isAuthenticated,navigate]);
+  
 
   return (
     <section className="bg-white dark:bg-gray-900 h-screen w-screen">
@@ -58,7 +44,7 @@ export default function SignForm() {
           <img
             alt="Background"
             src="https://img.freepik.com/free-vector/men-going-food-shopping_74855-1362.jpg?ga=GA1.1.1587082835.1713296226&semt=ais_hybrid"
-            className="absolute inset-0 h-full w-full  object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </aside>
 
@@ -97,7 +83,7 @@ export default function SignForm() {
                   type="text"
                   id="FirstName"
                   name="firstName"
-                  value={userDetails.firstName}
+                  value={formData.firstName}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-lg text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
@@ -116,7 +102,7 @@ export default function SignForm() {
                   type="text"
                   id="LastName"
                   name="lastName"
-                  value={userDetails.lastName}
+                  value={formData.lastName}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-lg text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
@@ -135,7 +121,7 @@ export default function SignForm() {
                   type="email"
                   id="Email"
                   name="email"
-                  value={userDetails.email}
+                  value={formData.email}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-lg text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
@@ -154,7 +140,7 @@ export default function SignForm() {
                   type="password"
                   id="Password"
                   name="password"
-                  value={userDetails.password}
+                  value={formData.password}
                   onChange={handleChange}
                   required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-lg text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
@@ -165,19 +151,20 @@ export default function SignForm() {
                 <button
                   type="submit"
                   className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
+                  disabled={loading}
                 >
-                  Sign Up
+                  {loading ? "Signing up..." : "Sign Up"}
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                   Already have an account?{" "}
-                  <Link to={'/login'} className="text-gray-700 underline dark:text-gray-200">
+                  <Link to="/login" className="text-gray-700 underline dark:text-gray-200">
                     Log in
                   </Link>
                 </p>
               </div>
-              {errorMessage && <p>{errorMessage}</p>}
-              {successMessage && <p>{successMessage}</p>}
+
+              {error && <p className="col-span-6 text-red-500">{error}</p>}
             </form>
           </div>
         </main>

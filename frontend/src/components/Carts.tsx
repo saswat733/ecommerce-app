@@ -37,9 +37,9 @@ export default function Carts() {
             <div className=" md:flex">
             <div className="flex flex-wrap md:w-6/12">
                 {cartItems.map((item: any) => (
-                    <Link to={"/product/"+item.id}>
+                    
                     <CartItem key={item.id} itemDetail={item} />
-                    </Link>
+                   
                 ))}
             </div>
             <div className=" mt-1.5 md:w-6/12 lg:mt-0 lg:ml-2 bg-white sticky top-2 h-max">

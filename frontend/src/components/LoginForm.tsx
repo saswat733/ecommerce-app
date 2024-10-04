@@ -1,8 +1,6 @@
-import axios from "axios";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import { useAuthUser } from "../utils/hooks/useAuthUser"; // Import the custom hook
 
 interface UserCredentials {
   email: string;
@@ -11,11 +9,12 @@ interface UserCredentials {
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const { loginUser, isAuthenticated, loading, error } = useAuthUser(); // Destructure the custom hook
   const [credentials, setCredentials] = useState<UserCredentials>({
     email: "",
     password: "",
   });
-  const [errorMessage, setErrorMessage] = useState<string>("");
+
   const [successMessage, setSuccessMessage] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,21 +27,15 @@ export default function LoginForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post(`${API_BASE_URL}/users/login`, credentials);
-      console.log("Response:", response);
-
-      if (response.status === 200) {
-        setSuccessMessage("Login successful!");
-        localStorage.setItem("token", response.data.token);
-        navigate('/');
-      }
-    } catch (error) {
-      setErrorMessage("An error occurred during login.");
-      setSuccessMessage("");
-    }
+    await loginUser(credentials.email, credentials.password);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setSuccessMessage("Login successful!");
+      navigate("/", { replace: true }); // Prevent going back to the login page
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <section className="bg-white dark:bg-gray-900 h-screen w-screen">
@@ -114,9 +107,11 @@ export default function LoginForm() {
                   required
                   className="mt-1 w-full rounded-md border-gray-200 bg-white text-lg text-gray-700 shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
-             <Link className="underline text-red-400" to={'/email-verification'}>
-              <span className="text-red-400 text-[12px] text-nowrap flex justify-end">forgot password?</span>
-             </Link> 
+                <Link className="underline text-red-400" to={"/email-verification"}>
+                  <span className="text-red-400 text-[12px] text-nowrap flex justify-end">
+                    Forgot password?
+                  </span>
+                </Link>
               </div>
 
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
@@ -124,17 +119,18 @@ export default function LoginForm() {
                   type="submit"
                   className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 dark:hover:bg-blue-700 dark:hover:text-white"
                 >
-                  Log In
+                  {loading ? "Logging in..." : "Log In"}
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                   Don't have an account?{" "}
-                  <Link to={'/signup'} className="text-gray-700 underline dark:text-gray-200">
+                  <Link to={"/signup"} className="text-gray-700 underline dark:text-gray-200">
                     Sign up
                   </Link>
                 </p>
               </div>
-              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
+              {error && <p className="text-red-500">{error}</p>}
               {successMessage && <p className="text-green-500">{successMessage}</p>}
             </form>
           </div>
