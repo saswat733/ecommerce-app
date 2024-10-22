@@ -16,15 +16,15 @@ interface SearchSuggestion {
   value: string;
 }
 
-interface SearchCache {
-  [key: string]: string[];
-}
-interface GeminiResponse {
-  category: string;
-  price: number | null;
-  isPriceUnder: boolean | null;
-  brand: string | null;
-}
+// interface SearchCache {
+//   [key: string]: string[];
+// }
+// interface GeminiResponse {
+//   category: string;
+//   price: number | null;
+//   isPriceUnder: boolean | null;
+//   brand: string | null;
+// }
 
 const SearchBar: React.FC = () => {
   const navigate = useNavigate();

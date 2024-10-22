@@ -22,7 +22,7 @@ export default function ProductCard({ product, category,flag }: ProductCardProps
     const dispatch = useDispatch()
 
     const { id, price, title, images, discountPercentage } = product;
-  const [originalPrice, discount] = useMemo(
+  const [] = useMemo(
     () => getCalculatedAmount(price, discountPercentage),
     [price, discountPercentage]
   );

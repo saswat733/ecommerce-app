@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import BrandSection from './BrandSection';
 import DiscountSection from './DiscountSection';
 import PriceSection from './PriceSection';

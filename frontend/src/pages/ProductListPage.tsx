@@ -6,7 +6,7 @@ import { useGetFilteredProducts } from "../utils/hooks/useGetFilteredProducts";
 import { useEffect, useState, useCallback, useMemo } from "react";
 import { addBrandFilter, addDiscountFilter, addPriceFilter, addRatingFilter } from "../utils/store/AllProductsSlice";
 import SortOptionsContainer from "../components/SortOptionsContainer";
-import { CiFilter } from "react-icons/ci";
+// import { CiFilter } from "react-icons/ci";
 import ShowFiltersComponents from "../components/ShowFiltersComponents";
 import { useGetProductByQuery } from "../utils/hooks/useGetProductByQuery";
 import { FaFilter } from "react-icons/fa6";

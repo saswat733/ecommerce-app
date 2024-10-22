@@ -8,7 +8,6 @@ interface productType {
   category: string;
 }
 export default function HomePageSpecialContainer({
-  category,
   products,
 }: productType) {
   if (products) {

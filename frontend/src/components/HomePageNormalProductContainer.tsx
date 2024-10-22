@@ -52,7 +52,7 @@ const HomePageProductContainer = ({
       <div className="">
         <Slider {...settings} className="flex items-center">
           {products.map((product: any) => (
-            <ProductCard key={product.id} product={product} category={category} />
+            <ProductCard key={product.id} product={product} category={category} flag={false} />
           ))}
         </Slider>
       </div>

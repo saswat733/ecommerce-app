@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import CartItem from "./CartItems";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Carts() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const user = useSelector((store: any) => store.user);
+    // const user = useSelector((store: any) => store.user);
     const cartItems = useSelector((store: any) => store.cart.cartItems);
     const subTotals = useSelector((store: any) => store.cart.subTotals);
     const discounts = useSelector((store: any) => store.cart.discounts);
