@@ -1,24 +1,30 @@
-import dotenv from 'dotenv';
-import { app } from './app.js';  // Import your Express app
-import connectDB from './db/index.js';  // Import your DB connection
+import express from 'express';
+import cors from 'cors';
 
-dotenv.config({
-  path: './.env',  // Ensure the .env path is correct
-});
+const app = express();
 
-// Connect to the database and start the server
-connectDB()
-  .then(() => {
-    app.on('error', (error) => {
-      console.error('Server error:', error);
-      throw error;
-    });
+// List of allowed origins (Vercel frontend and localhost for testing)
+const allowedOrigins = [
+  'https://your-vercel-app.vercel.app',  // Replace with your actual Vercel URL
+  'http://localhost:5173'  // For local development
+];
 
-    const port = process.env.PORT || 8000;
-    app.listen(port, () => {
-      console.log(`Server is listening at port: ${port}`);
-    });
+// Enable CORS with the appropriate options
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // Allows cookies and headers to be sent
   })
-  .catch((err) => {
-    console.error('MongoDB connection failed:', err);
-  });
+);
+
+// Parse incoming requests with JSON payloads
+app.use(express.json());
+
+export { app };
