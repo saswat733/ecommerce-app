@@ -5,7 +5,7 @@ const app = express();
 
 // List of allowed origins (Vercel frontend and localhost for testing)
 const allowedOrigins = [
-  'https://your-vercel-app.vercel.app',  // Replace with your actual Vercel URL
+  'https://ecommerce-31v5v2ne6-saswatsinghs-projects.vercel.app/',  // Replace with your actual Vercel URL
   'http://localhost:5173'  // For local development
 ];
 
