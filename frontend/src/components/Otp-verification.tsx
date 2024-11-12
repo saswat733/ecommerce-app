@@ -18,7 +18,6 @@ export default function OtpVerification() {
             const response = await axios.post(
                 `${API_BASE_URL}/auth/send-otp`,
                 { email: input.email },
-                { withCredentials: true } // Allow credentials like cookies if needed
             );
 
             console.log('OTP sent successfully:', response.data);
@@ -35,7 +34,6 @@ export default function OtpVerification() {
             const response = await axios.post(
                 `${API_BASE_URL}/auth/verify-otp`,
                 input,
-                { withCredentials: true }
             );
 
             localStorage.setItem('token', response.data.token);
