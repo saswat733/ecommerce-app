@@ -11,7 +11,7 @@ const app = express();
 
 // List of allowed origins (Vercel frontend and localhost for testing)
 const allowedOrigins = [
-  'https://ecommerce-31v5v2ne6-saswatsinghs-projects.vercel.app/',
+  'https://ecommerce-app-rust-nine.vercel.app/',
   'http://localhost:5173'  // For local development
 ];
 
