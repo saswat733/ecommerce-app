@@ -12,13 +12,14 @@ const app = express();
 // List of allowed origins (Vercel frontend and localhost for testing)
 const allowedOrigins = [
   'https://ecommerce-31v5v2ne6-saswatsinghs-projects.vercel.app/',
-  'http://localhost:3000'  // For local development
+  'http://localhost:5173'  // For local development
 ];
 
 // Enable CORS with the appropriate options
 app.use(
   cors({
     origin: (origin, callback) => {
+        console.log('origin',origin)
       if (!origin || allowedOrigins.includes(origin) || origin === null) {
         callback(null, true);
       } else {

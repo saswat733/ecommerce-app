@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import {  PRODUCTS_BY_CATEGORY_API } from '../../api';
+import {  API_ENDPOINTS } from '../../api';
 import { addCategoryProducts } from '../store/AllProductsSlice';
 
 export const useGetProductsByCategory = (category: string) => {
@@ -11,7 +11,7 @@ export const useGetProductsByCategory = (category: string) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axios.get(`${PRODUCTS_BY_CATEGORY_API}${category}`);
+        const response = await axios.get(`${API_ENDPOINTS.PRODUCTS_BY_CATEGORY}${category}`);
         console.log("api resposne:",response.data.products);
         dispatch(addCategoryProducts({ [category]: response.data.products }));
       } catch (error) {

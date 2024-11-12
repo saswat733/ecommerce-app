@@ -1,7 +1,7 @@
 export const ALL_PRODUCTS_API = "https://dummyjson.com/products";
 
 
-const API_BASE_URL="https://ecommerce-backend-wzjr.onrender.com";
+const API_BASE_URL="https://dummyjson.com";
 
 export const API_ENDPOINTS={
   ALL_PRODUCTS: `${API_BASE_URL}/products`,
