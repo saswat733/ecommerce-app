@@ -2,10 +2,9 @@ import Product from "../models/allProducts.model.js";
 import { fetchAndStoreProducts } from "../services/productService.js";
 
 export const allProducts=async(req,res)=>{
- 
-    
     try {
         const products=await Product.find({});
+        console.log("products",products)
         if(!products || products.length===0){
             return res.status(404).json({message:'No products found'});
         }

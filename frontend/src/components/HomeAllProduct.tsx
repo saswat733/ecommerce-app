@@ -6,6 +6,7 @@ import HomePageSpecialContainer from "./HomePageSpecialProductContainer";
 
 export default function HomeAllProduct() {
   const dealProducts = useSelector((store: any) => store.product.dealProducts);
+  console.log("deal Products:",dealProducts)
   const categoryProducts = useSelector((store: any) => store.product.categoryProducts);
 
   useGetAllProducts();

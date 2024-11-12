@@ -1,4 +1,3 @@
-// ./services/productService.js
 import axios from 'axios';
 import Product from '../models/allProducts.model.js';
 import { ALL_PRODUCTS_API } from '../config/apiConstants.js';
@@ -6,6 +5,7 @@ import { ALL_PRODUCTS_API } from '../config/apiConstants.js';
 export const fetchAndStoreProducts = async () => {
   try {
     const response = await axios.get(ALL_PRODUCTS_API);
+    console.log("first:",response);
     const products = response.data.products;
 
     for (const product of products) {
@@ -56,10 +56,9 @@ export const fetchAndStoreProducts = async () => {
 export const getProductsByCategory=async (req,res)=>{
     try {
         const {category}=req.params;
-
         //query the database for products with the specified category
         const products=await Product.find({category});
-
+        console.log(products)
         //if no products found for the specified category
         if(products.length===0||!products){
             return res.status(404).json({message:'No products found for the specified category'});

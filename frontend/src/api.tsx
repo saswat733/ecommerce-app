@@ -6,7 +6,6 @@ const API_BASE_URL="https://ecommerce-backend-wzjr.onrender.com";
 export const API_ENDPOINTS={
   ALL_PRODUCTS: `${API_BASE_URL}/products`,
   PRODUCTS_BY_CATEGORY:`${API_BASE_URL}/products/category/`,
-
 }
 
 export const PRODUCTS_BY_CATEGORY_API =

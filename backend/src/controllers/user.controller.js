@@ -29,7 +29,6 @@ export const registerUser = async (req, res) => {
         });
     }
 
-    console.log(data);
     try {
         // Check if the user already exists by email
         const existingUser = await User.findOne({ email: data.email });
