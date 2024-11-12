@@ -32,6 +32,8 @@ app.use(
   })
 );
 
+app.options('*', cors());
+
 // // Connect to the database
 // connectDB().then(() => {
 //   console.log('Connected to MongoDB');
